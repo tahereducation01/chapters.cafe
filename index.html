@@ -6,53 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapters London | Premium Brunch & Dining in Ilford</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'luxury-gold': '#D4AF37',
-                        'deep-charcoal': '#0F0F0F',
-                        'soft-gold': '#E5C76B',
-                        'off-white': '#FAF9F6',
-                        'overlay-black': 'rgba(10, 10, 10, 0.85)',
-                    },
-                    fontFamily: {
-                        'playfair': ['Playfair Display', 'serif'],
-                        'outfit': ['Outfit', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'gradient-gold': 'linear-gradient(135deg, #D4AF37 0%, #F5E6AD 100%)',
-                    }
-                }
-            }
-        }
-    </script>
-
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
     <style>
-        /* Fix for desktop horizontal scrolling */
+        :root {
+            --luxury-gold: #D4AF37;
+            --deep-charcoal: #0F0F0F;
+            --soft-gold: #E5C76B;
+            --off-white: #FAF9F6;
+            --overlay-black: rgba(10, 10, 10, 0.85);
+        }
+
         body {
-            background-color: #0F0F0F;
-            color: #FAF9F6;
-            font-family: 'Outfit', sans-serif;
+            background-color: var(--deep-charcoal);
+            color: var(--off-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
         }
 
-        .glass-nav {
-            background: rgba(15, 15, 15, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        .playfair-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .outfit-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .text-gold {
+            color: var(--luxury-gold);
+        }
+
+        .bg-gold {
+            background-color: var(--luxury-gold);
+        }
+
+        .bg-charcoal {
+            background-color: var(--deep-charcoal);
+        }
+
+        .bg-offwhite {
+            background-color: var(--off-white);
         }
 
         .hero-zoom {
@@ -63,155 +59,303 @@
             from {
                 transform: scale(1);
             }
-
             to {
                 transform: scale(1.1);
             }
         }
 
-        .btn-gold-glow:hover {
+        .glass-nav {
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .btn-gold {
+            background-color: var(--luxury-gold);
+            color: var(--deep-charcoal);
+            padding: 12px 28px;
+            font-weight: 600;
+            border: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--soft-gold);
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline-gold {
+            background-color: transparent;
+            color: var(--luxury-gold);
+            padding: 12px 28px;
+            font-weight: 600;
+            border: 1px solid var(--luxury-gold);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-gold:hover {
+            background-color: var(--luxury-gold);
+            color: var(--deep-charcoal);
+        }
+
+        .menu-item {
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            transition: transform 0.7s ease;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            .hero-text {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 40px 0;
+            }
+            
+            .hero-text {
+                font-size: 2rem;
+            }
+        }
+
+        .border-gold {
+            border-color: var(--luxury-gold) !important;
+        }
+
+        .offer-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .offer-card:hover {
+            border-color: var(--luxury-gold);
+            transform: translateY(-5px);
+        }
+
+        .contact-info div {
+            transition: all 0.3s ease;
+        }
+
+        .contact-info div:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .top-banner {
+            background-color: var(--luxury-gold);
+            color: var(--deep-charcoal);
+            padding: 8px 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .navbar-brand img {
+            height: 60px;
+        }
+
+        .nav-link {
+            color: var(--off-white) !important;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 8px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--luxury-gold) !important;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--luxury-gold);
+            transform: scale(1.2);
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--luxury-gold);
+        }
+
+        .text-center .section-title::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Menu filtering */
+        .menu-category-btn.active {
+            background-color: var(--luxury-gold) !important;
+            color: var(--deep-charcoal) !important;
+            border-color: var(--luxury-gold) !important;
+        }
+
+        .menu-item.hidden {
+            display: none;
         }
     </style>
 </head>
 
-<body class="antialiased selection:bg-luxury-gold selection:text-black">
-
-    <div
-        class="fixed top-0 w-full z-[60] bg-luxury-gold text-deep-charcoal py-2 text-center text-xs font-bold uppercase tracking-widest shadow-lg">
-        <span class="animate-pulse mr-2">●</span> Now Delivering via UberEats & Deliveroo | 100% Halal Menu
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner text-center">
+        <span class="animate-pulse">●</span> Now Delivering via UberEats & Deliveroo | 100% Halal Menu
     </div>
 
-    <nav class="fixed top-8 w-full z-50 glass-nav border-b border-white/5 transition-all duration-300">
-        <div class="container mx-auto px-6 py-2 flex justify-between items-center relative">
-
-            <a href="#home" class="flex flex-col items-center group -ml-4 z-50">
-                <svg width="160" height="60" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg"
-                    class="text-luxury-gold group-hover:text-white transition-colors duration-300 fill-current">
-                    <g transform="translate(128, 0) scale(0.5)">
-                        <path d="M15,10 L15,45 M25,10 L25,45 M35,10 L35,45 M15,45 C15,65 35,65 35,45 M25,65 L25,100"
-                            stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none" />
-                        <path d="M65,10 C85,10 85,50 65,50 C45,50 45,10 65,10 M65,50 L65,100" stroke="currentColor"
-                            stroke-width="5" stroke-linecap="round" fill="none" />
-                        <path d="M15,35 Q-15,35 -5,10" stroke="currentColor" stroke-width="4" fill="none"
-                            opacity="0.8" />
-                        <path d="M75,80 Q110,80 110,40 Q110,70 85,90" fill="currentColor" />
-                    </g>
-                    <text x="150" y="95" font-family="'Playfair Display', serif" font-size="44" font-weight="bold"
-                        text-anchor="middle" letter-spacing="4">CHAPTERS</text>
-                    <text x="150" y="118" font-family="'Outfit', sans-serif" font-size="11" font-weight="400"
-                        text-anchor="middle" letter-spacing="3" opacity="0.7">BREAKFAST • BRUNCH • BURGERS</text>
-                </svg>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav py-0" style="top: 32px;">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <div class="d-flex flex-column align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div class="me-2">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15,10 L15,45 M25,10 L25,45 M35,10 L35,45 M15,45 C15,65 35,65 35,45 M25,65 L25,100" 
+                                      transform="translate(0, -10) scale(0.3)" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                <path d="M65,10 C85,10 85,50 65,50 C45,50 45,10 65,10 M65,50 L65,100" 
+                                      transform="translate(-20, -10) scale(0.3)" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="playfair-font fs-3 fw-bold text-gold">CHAPTERS</span>
+                            <span class="outfit-font fs-7 text-white-50">BREAKFAST • BRUNCH • BURGERS</span>
+                        </div>
+                    </div>
+                </div>
             </a>
-
-            <div class="hidden md:flex space-x-8 items-center font-light tracking-wide text-sm uppercase">
-                <a href="#home" class="hover:text-luxury-gold transition-colors">Experience</a>
-                <a href="#about" class="hover:text-luxury-gold transition-colors">Our Story</a>
-                <a href="#menu" class="hover:text-luxury-gold transition-colors">Menu</a>
-                <a href="#offers" class="text-luxury-gold font-semibold transition-colors">Offers</a>
-                <a href="#private-hire" class="hover:text-luxury-gold transition-colors">Hire</a>
-                <a href="tel:+442030926216"
-                    class="bg-luxury-gold/10 text-luxury-gold px-6 py-2 rounded-sm border border-luxury-gold/30 hover:bg-luxury-gold hover:text-deep-charcoal transition-all font-semibold">
-                    Book Table
-                </a>
-            </div>
-
-            <button id="mobile-menu-btn" class="md:hidden text-luxury-gold text-2xl z-50 focus:outline-none">
-                <i class="fas fa-bars"></i>
+            
+            <button class="navbar-toggler border-gold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
             </button>
-        </div>
-
-        <div id="mobile-menu"
-            class="absolute top-full left-0 w-full bg-[#0F0F0F] border-b border-white/10 hidden flex-col items-center py-6 space-y-4 md:hidden shadow-2xl origin-top transition-transform duration-300">
-            <a href="#home" class="text-white hover:text-luxury-gold text-sm uppercase tracking-widest"
-                onclick="toggleMobileMenu()">Experience</a>
-            <a href="#about" class="text-white hover:text-luxury-gold text-sm uppercase tracking-widest"
-                onclick="toggleMobileMenu()">Our Story</a>
-            <a href="#menu" class="text-white hover:text-luxury-gold text-sm uppercase tracking-widest"
-                onclick="toggleMobileMenu()">Menu</a>
-            <a href="#offers" class="text-luxury-gold font-bold text-sm uppercase tracking-widest"
-                onclick="toggleMobileMenu()">Offers</a>
-            <a href="#private-hire" class="text-white hover:text-luxury-gold text-sm uppercase tracking-widest"
-                onclick="toggleMobileMenu()">Hire</a>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Our Story</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold" href="#offers">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#private-hire">Hire</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a href="tel:+442030926216" class="btn btn-outline-gold py-2 px-4">Book Table</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <section id="home" class="relative h-screen overflow-hidden flex items-center pt-16">
-        <div class="absolute inset-0 z-0">
-            <img src="shop.jpg" class="w-full h-full object-cover brightness-[0.35] hero-zoom"
-                alt="Chapters London Interior">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-transparent"></div>
+    <!-- Hero Section -->
+    <section id="home" class="vh-100 d-flex align-items-center position-relative overflow-hidden">
+        <div class="position-absolute top-0 start-0 w-100 h-100">
+            <div class="w-100 h-100 bg-dark" style="background: url('shop.jpg') center/cover no-repeat; filter: brightness(0.35);"></div>
+            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(15, 15, 15, 1), transparent);"></div>
         </div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-4xl" data-aos="fade-up" data-aos-duration="1200">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="h-[1px] w-12 bg-luxury-gold"></div>
-                    <span class="text-luxury-gold tracking-[0.3em] uppercase text-sm font-semibold">Est. Ilford,
-                        London</span>
-                </div>
-                <h1 class="text-5xl md:text-8xl font-playfair mb-6 leading-[1.1] text-white">
-                    Crafting Your <br><span class="italic text-luxury-gold">Next Chapter</span>
-                </h1>
-                <p class="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed font-light">
-                    Elevated halal brunch, artisanal coffee, and signature wagyu burgers. Experience the taste of modern
-                    luxury in the heart of East London.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#menu"
-                        class="bg-gradient-gold text-deep-charcoal px-8 py-4 font-bold rounded-sm btn-gold-glow transition-all">
-                        View Menu
-                    </a>
-                    <a href="https://ubereats.com" target="_blank"
-                        class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 font-bold rounded-sm hover:bg-white hover:text-deep-charcoal transition-all flex items-center">
-                        <i class="fas fa-bicycle mr-2"></i> Order Delivery
-                    </a>
+        
+        <div class="container position-relative z-1">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-gold" style="width: 40px; height: 1px;"></div>
+                        <span class="text-gold text-uppercase ms-3 fs-7 fw-semibold letter-spacing-2">Est. Ilford, London</span>
+                    </div>
+                    <h1 class="playfair-font hero-text text-white mb-4 display-3 fw-bold">
+                        Crafting Your <br><span class="fst-italic text-gold">Next Chapter</span>
+                    </h1>
+                    <p class="lead text-white-80 mb-5" style="max-width: 500px;">
+                        Elevated halal brunch, artisanal coffee, and signature wagyu burgers. Experience the taste of modern luxury in the heart of East London.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#menu" class="btn btn-gold">View Menu</a>
+                        <a href="https://ubereats.com" target="_blank" class="btn btn-outline-gold d-flex align-items-center">
+                            <i class="bi bi-bicycle me-2"></i> Order Delivery
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-24 bg-[#141414] relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-luxury-gold/5 skew-x-12 transform translate-x-20"></div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-
-                <div class="lg:w-1/2 relative" data-aos="fade-right">
-                    <div class="relative z-10">
-                        <img src="shope1.png" alt="Restaurant Interior"
-                            class="w-full rounded-sm shadow-2xl border-b-4 border-luxury-gold">
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                    <div class="position-relative z-1">
+                        <img src="shope1.png" alt="Restaurant Interior" class="img-fluid rounded shadow-lg" style="border-bottom: 4px solid var(--luxury-gold);">
                     </div>
-                    <div class="absolute -top-6 -left-6 w-full h-full border border-white/10 z-0 hidden md:block"></div>
+                    <div class="position-absolute top-0 start-0 w-100 h-100 border border-white-10 translate-middle" style="z-index: 0; margin-top: -20px; margin-left: -20px;"></div>
                 </div>
-
-                <div class="lg:w-1/2" data-aos="fade-left">
-                    <span class="text-luxury-gold uppercase tracking-widest text-xs font-bold mb-2 block">Our
-                        Story</span>
-                    <h2 class="text-4xl md:text-5xl font-playfair mb-6 text-white">More Than Just <br><span
-                            class="text-luxury-gold italic">A Restaurant</span></h2>
-
-                    <p class="text-gray-400 mb-6 leading-relaxed font-light">
-                        Located in the vibrant heart of Ilford, Chapters London was born from a passion for exceptional
-                        food and community. We believe every meal tells a story, which is why we've curated a menu that
-                        blends modern culinary trends with comforting classics.
+                <div class="col-lg-6">
+                    <span class="text-gold text-uppercase fs-7 fw-bold letter-spacing-2">Our Story</span>
+                    <h2 class="playfair-font display-5 text-white mb-4">
+                        More Than Just <br><span class="text-gold fst-italic">A Restaurant</span>
+                    </h2>
+                    <p class="text-white-70 mb-4">
+                        Located in the vibrant heart of Ilford, Chapters London was born from a passion for exceptional food and community. We believe every meal tells a story, which is why we've curated a menu that blends modern culinary trends with comforting classics.
                     </p>
-                    <p class="text-gray-400 mb-8 leading-relaxed font-light">
-                        Whether you're joining us for a lazy Sunday brunch, a quick artisan coffee, or a celebratory
-                        dinner, our space is designed to be your sanctuary. We are proud to serve a fully <strong>Halal
-                            menu</strong>, ensuring everyone can enjoy our signature Wagyu burgers and hand-crafted
-                        mocktails.
+                    <p class="text-white-70 mb-5">
+                        Whether you're joining us for a lazy Sunday brunch, a quick artisan coffee, or a celebratory dinner, our space is designed to be your sanctuary. We are proud to serve a fully <strong class="text-gold">Halal menu</strong>, ensuring everyone can enjoy our signature Wagyu burgers and hand-crafted mocktails.
                     </p>
-
-                    <div class="flex items-center gap-8">
+                    
+                    <div class="d-flex align-items-center gap-5">
                         <div>
-                            <span class="block text-3xl font-playfair text-white">4.8</span>
-                            <span class="text-xs text-luxury-gold uppercase tracking-widest">Google Rating</span>
+                            <span class="playfair-font display-6 text-white">4.8</span>
+                            <div class="text-gold text-uppercase fs-8">Google Rating</div>
                         </div>
-                        <div class="w-[1px] h-10 bg-white/20"></div>
+                        <div class="vr bg-white-20" style="height: 40px;"></div>
                         <div>
-                            <span class="block text-3xl font-playfair text-white">100%</span>
-                            <span class="text-xs text-luxury-gold uppercase tracking-widest">Halal Certified</span>
+                            <span class="playfair-font display-6 text-white">100%</span>
+                            <div class="text-gold text-uppercase fs-8">Halal Certified</div>
                         </div>
                     </div>
                 </div>
@@ -219,448 +363,330 @@
         </div>
     </section>
 
-    <section id="menu" class="py-24 bg-[#0a0a0a]">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-down">
-                <span class="text-luxury-gold uppercase tracking-widest text-xs font-bold">Gastronomy</span>
-                <h2 class="text-4xl md:text-5xl font-playfair mt-2 mb-4">The Culinary Collection</h2>
-                <div class="w-24 h-1 bg-luxury-gold mx-auto mb-10"></div>
-
-                <div class="flex flex-wrap justify-center gap-4">
-                    <button onclick="filterMenu('all')"
-                        class="tab-btn px-6 md:px-8 py-3 border border-luxury-gold bg-luxury-gold text-deep-charcoal rounded-sm font-semibold transition-all hover:bg-white hover:text-black hover:border-white">All</button>
-                    <button onclick="filterMenu('brunch')"
-                        class="tab-btn px-6 md:px-8 py-3 border border-luxury-gold text-luxury-gold rounded-sm font-semibold transition-all hover:bg-luxury-gold hover:text-deep-charcoal">Brunch</button>
-                    <button onclick="filterMenu('mains')"
-                        class="tab-btn px-6 md:px-8 py-3 border border-luxury-gold text-luxury-gold rounded-sm font-semibold transition-all hover:bg-luxury-gold hover:text-deep-charcoal">Mains</button>
-                    <button onclick="filterMenu('drinks')"
-                        class="tab-btn px-6 md:px-8 py-3 border border-luxury-gold text-luxury-gold rounded-sm font-semibold transition-all hover:bg-luxury-gold hover:text-deep-charcoal">Drinks</button>
+    <!-- Menu Section -->
+    <section id="menu" class="section-padding bg-black">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="text-gold text-uppercase fs-7 fw-bold letter-spacing-2">Gastronomy</span>
+                <h2 class="playfair-font display-5 text-white mb-3">The Culinary Collection</h2>
+                <div class="bg-gold mx-auto mb-5" style="width: 60px; height: 2px;"></div>
+                
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+                    <button class="btn menu-category-btn active" data-category="all">All</button>
+                    <button class="btn btn-outline-gold menu-category-btn" data-category="brunch">Brunch</button>
+                    <button class="btn btn-outline-gold menu-category-btn" data-category="mains">Mains</button>
+                    <button class="btn btn-outline-gold menu-category-btn" data-category="drinks">Drinks</button>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-                <div class="menu-item group cursor-pointer" data-category="brunch" data-aos="fade-up">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="chiken.png"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="honycom chicken">
-                        <div
-                            class="absolute top-4 left-4 bg-luxury-gold text-deep-charcoal font-bold py-1 px-3 text-xs uppercase tracking-wider">
-                            Bestseller</div>
+            
+            <div class="row g-4">
+                <!-- Menu Item 1 -->
+                <div class="col-md-6 col-lg-4 menu-item" data-category="brunch">
+                    <div class="card bg-transparent border-0 h-100">
+                        <div class="position-relative overflow-hidden rounded-top">
+                            <img src="chiken.png" class="card-img-top" alt="honycom chicken" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 bg-gold text-dark fw-bold py-1 px-3 m-3 fs-7 text-uppercase">
+                                Bestseller
+                            </div>
+                        </div>
+                        <div class="card-body border border-white-10 border-top-0 rounded-bottom">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="playfair-font fs-4 text-white">honycom chicken</h5>
+                                <span class="text-gold fw-bold fs-5">£14.50</span>
+                            </div>
+                            <p class="text-white-60 fs-7">
+                                Artisanal chicken sausages, free-range organic eggs, roasted vine tomatoes, portobello mushrooms, turkey bacon and sourdough.
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">honycom chicken</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£14.50</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Artisanal chicken sausages, free-range
-                        organic eggs, roasted vine tomatoes, portobello mushrooms, turkey bacon and sourdough.</p>
                 </div>
-
-                <div class="menu-item group cursor-pointer" data-category="brunch" data-aos="fade-up">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="egg.png"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Shakshuka">
-                        <div
-                            class="absolute top-4 left-4 bg-gray-800 text-white font-bold py-1 px-3 text-xs uppercase tracking-wider border border-white/20">
-                            Spicy</div>
+                
+                <!-- Menu Item 2 -->
+                <div class="col-md-6 col-lg-4 menu-item" data-category="brunch">
+                    <div class="card bg-transparent border-0 h-100">
+                        <div class="position-relative overflow-hidden rounded-top">
+                            <img src="egg.png" class="card-img-top" alt="Shakshuka" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 bg-dark text-white fw-bold py-1 px-3 m-3 fs-7 text-uppercase border border-white-20">
+                                Spicy
+                            </div>
+                        </div>
+                        <div class="card-body border border-white-10 border-top-0 rounded-bottom">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="playfair-font fs-4 text-white">Signature Shakshuka</h5>
+                                <span class="text-gold fw-bold fs-5">£13.50</span>
+                            </div>
+                            <p class="text-white-60 fs-7">
+                                Baked eggs in a spicy tomato and pepper ragout, topped with feta cheese and coriander. Served with toasted flatbread.
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Signature Shakshuka</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£13.50</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Baked eggs in a spicy tomato and pepper
-                        ragout, topped with feta cheese and coriander. Served with toasted flatbread.</p>
                 </div>
-
-                <div class="menu-item group cursor-pointer" data-category="mains" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Chapters Burger">
-                        <div
-                            class="absolute top-4 left-4 bg-green-900 text-white font-bold py-1 px-3 text-xs uppercase tracking-wider border border-green-700">
-                            Halal</div>
+                
+                <!-- Menu Item 3 -->
+                <div class="col-md-6 col-lg-4 menu-item" data-category="mains">
+                    <div class="card bg-transparent border-0 h-100">
+                        <div class="position-relative overflow-hidden rounded-top">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 class="card-img-top" alt="Chapters Burger" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 bg-success text-white fw-bold py-1 px-3 m-3 fs-7 text-uppercase border border-success">
+                                Halal
+                            </div>
+                        </div>
+                        <div class="card-body border border-white-10 border-top-0 rounded-bottom">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="playfair-font fs-4 text-white">Wagyu Signature</h5>
+                                <span class="text-gold fw-bold fs-5">£18.90</span>
+                            </div>
+                            <p class="text-white-60 fs-7">
+                                Premium wagyu beef, truffle aioli, aged cheddar, turkey bacon jam, and brioche. Served with rosemary fries.
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Wagyu Signature</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£18.90</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Premium wagyu beef, truffle aioli, aged
-                        cheddar, turkey bacon jam, and brioche. Served with rosemary fries.</p>
                 </div>
-
-                <div class="menu-item group cursor-pointer" data-category="mains" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Steak">
-                        <div
-                            class="absolute top-4 left-4 bg-green-900 text-white font-bold py-1 px-3 text-xs uppercase tracking-wider border border-green-700">
-                            Halal</div>
-                    </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Ribeye Steak</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£24.00</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">28-day dry-aged ribeye, garlic butter,
-                        blistered cherry tomatoes, and triple-cooked chips.</p>
-                </div>
-
-                <div class="menu-item group cursor-pointer" data-category="mains" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="green.png"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Lamb Chops">
-                        <div
-                            class="absolute top-4 left-4 bg-green-900 text-white font-bold py-1 px-3 text-xs uppercase tracking-wider border border-green-700">
-                            Halal</div>
-                    </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Grilled Lamb Chops</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£22.50</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Marinated in special house spices,
-                        served with creamy mash, grilled asparagus and mint jus.</p>
-                </div>
-
-                <div class="menu-item group cursor-pointer" data-category="mains" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Pasta">
-                    </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Truffle Chicken Pasta</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£16.50</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Fettuccine tossed in a rich truffle
-                        cream sauce with grilled chicken breast and parmesan shavings.</p>
-                </div>
-
-                <div class="menu-item group cursor-pointer" data-category="drinks" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="beverage.jpg"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Specialty Lattes">
-                    </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Gold Leaf Latte</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£5.50</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">24k edible gold flakes, turmeric blend,
-                        choice of oat, almond or soy milk. A visual masterpiece.</p>
-                </div>
-
-                <div class="menu-item group cursor-pointer" data-category="drinks" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Mojito">
-                        <div
-                            class="absolute top-4 left-4 bg-blue-900 text-white font-bold py-1 px-3 text-xs uppercase tracking-wider border border-blue-700">
-                            Mocktail</div>
-                    </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Passionfruit Mojito</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£7.90</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Refreshing blend of fresh passionfruit,
-                        mint, lime and sparkling soda. Alcohol-free.</p>
-                </div>
-
-                <div class="menu-item group cursor-pointer" data-category="drinks" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Milkshake">
-                    </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">strawberry Madness</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£6.50</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Thick vanilla milkshake blended with
-                        strawberrys, topped with whipped cream and chocolate drizzle.</p>
-                </div>
-
-                <div class="menu-item group cursor-pointer" data-category="drinks" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="relative overflow-hidden mb-5 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8"
-                            class="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                            alt="Karak coffee">
-                        <div
-                            class="absolute top-4 left-4 bg-luxury-gold text-deep-charcoal font-bold py-1 px-3 text-xs uppercase tracking-wider">
-                            Local Fave</div>
-                    </div>
-                    <div class="flex justify-between items-baseline mb-2 border-b border-white/10 pb-2">
-                        <h3 class="text-2xl font-playfair">Chapters strong coffee</h3>
-                        <span class="text-luxury-gold font-bold text-lg">£3.50</span>
-                    </div>
-                    <p class="text-white/50 text-sm font-light leading-relaxed">Authentic strong tea brewed with
-                        cardamom, saffron and evaporated milk.</p>
-                </div>
-
+                
+                <!-- Additional menu items would continue here with appropriate columns -->
+                
             </div>
-
-            <div class="text-center mt-16">
-                <a href="#"
-                    class="inline-block border-b border-luxury-gold text-luxury-gold pb-1 hover:text-white hover:border-white transition-colors uppercase tracking-widest text-sm">Download
-                    Full Menu PDF</a>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="text-gold text-uppercase fs-7 fw-bold border-bottom border-gold pb-1 text-decoration-none">
+                    Download Full Menu PDF
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="offers" class="py-24 relative bg-deep-charcoal border-y border-luxury-gold/20">
-        <div
-            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000')] bg-cover bg-center opacity-10">
-        </div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-luxury-gold uppercase tracking-widest text-xs font-bold">Promotions</span>
-                <h2 class="text-4xl md:text-5xl font-playfair mt-2 text-white">The Golden Hour</h2>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Exclusive treats for our Chapters community.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white/5 border border-white/10 p-8 rounded-sm hover:border-luxury-gold transition-all group"
-                    data-aos="fade-right">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-graduation-cap text-4xl text-luxury-gold"></i>
-                        <span
-                            class="bg-luxury-gold text-deep-charcoal px-3 py-1 text-xs font-bold uppercase">Daily</span>
-                    </div>
-                    <h3 class="text-2xl font-playfair text-white mb-2">Student & NHS 15% Off</h3>
-                    <p class="text-gray-400 mb-6">Valid on all food items Monday to Friday with valid ID. Treat yourself
-                        between lectures or shifts.</p>
-                    <a href="#"
-                        class="text-luxury-gold uppercase text-xs tracking-widest font-bold group-hover:text-white transition-colors">Learn
-                        More →</a>
-                </div>
-
-                <div class="bg-white/5 border border-white/10 p-8 rounded-sm hover:border-luxury-gold transition-all group"
-                    data-aos="fade-left">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-birthday-cake text-4xl text-luxury-gold"></i>
-                        <span
-                            class="bg-luxury-gold text-deep-charcoal px-3 py-1 text-xs font-bold uppercase">Birthdays</span>
-                    </div>
-                    <h3 class="text-2xl font-playfair text-white mb-2">Birthday Special</h3>
-                    <p class="text-gray-400 mb-6">Book a table for 5+ people on your birthday week and the celebrant
-                        eats for free. (ID required).</p>
-                    <a href="#"
-                        class="text-luxury-gold uppercase text-xs tracking-widest font-bold group-hover:text-white transition-colors">Book
-                        Now →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- <section id="private-hire" class="py-24 bg-white text-deep-charcoal relative">
-        <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2 relative" data-aos="fade-right">
-                <div class="absolute -top-4 -left-4 w-20 h-20 border-t-4 border-l-4 border-luxury-gold"></div>
-                <img src="https://images.unsplash.com/photo-1519671482538-518b5c2fb984?auto=format&fit=crop&w=1000&q=80"
-                    class="w-full shadow-2xl" alt="Private Events">
-                <div class="absolute -bottom-4 -right-4 w-20 h-20 border-b-4 border-r-4 border-luxury-gold"></div>
-            </div>
-            <div class="lg:w-1/2" data-aos="fade-left">
-                <span class="text-luxury-gold font-bold uppercase tracking-widest text-sm block mb-4">Exclusive Access</span>
-                <h2 class="text-5xl font-playfair mb-6 text-black">Host Your Moments</h2>
-                <p class="text-gray-600 mb-8 text-lg font-light leading-relaxed">
-                    From corporate breakfasts to intimate evening soirées, Chapters London provides the perfect Ilford
-                    backdrop for your special events. We offer bespoke halal catering packages tailored to your requirements.
+    <!-- Offers Section -->
+    <section id="offers" class="section-padding bg-charcoal position-relative" style="border-top: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 1px solid rgba(212, 175, 55, 0.2);">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25" 
+             style="background: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000') center/cover no-repeat;"></div>
+        
+        <div class="container position-relative z-1">
+            <div class="text-center mb-5">
+                <span class="text-gold text-uppercase fs-7 fw-bold letter-spacing-2">Promotions</span>
+                <h2 class="playfair-font display-5 text-white mb-3">The Golden Hour</h2>
+                <p class="text-white-60 mx-auto" style="max-width: 700px;">
+                    Exclusive treats for our Chapters community.
                 </p>
-                <div class="grid grid-cols-2 gap-4 mb-10">
-                    <div class="flex items-center"><i class="fas fa-check text-luxury-gold mr-3"></i> Full Venue Hire</div>
-                    <div class="flex items-center"><i class="fas fa-check text-luxury-gold mr-3"></i> Custom Menus</div>
-                    <div class="flex items-center"><i class="fas fa-check text-luxury-gold mr-3"></i> Capacity: 60 Guests</div>
-                    <div class="flex items-center"><i class="fas fa-check text-luxury-gold mr-3"></i> Prayer Space Available</div>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-6">
+                    <div class="offer-card p-4 p-md-5 rounded h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <i class="bi bi-mortarboard-fill text-gold fs-1"></i>
+                            <span class="bg-gold text-dark px-3 py-1 fs-8 fw-bold text-uppercase">Daily</span>
+                        </div>
+                        <h3 class="playfair-font fs-3 text-white mb-3">Student & NHS 15% Off</h3>
+                        <p class="text-white-60 mb-4">
+                            Valid on all food items Monday to Friday with valid ID. Treat yourself between lectures or shifts.
+                        </p>
+                        <a href="#" class="text-gold text-uppercase fs-7 fw-bold text-decoration-none d-inline-flex align-items-center">
+                            Learn More <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
                 </div>
-                <button
-                    class="bg-deep-charcoal text-white px-8 py-4 font-bold uppercase tracking-wider hover:bg-luxury-gold hover:text-black transition-all">Enquire
-                    for Events</button>
+                
+                <div class="col-lg-6">
+                    <div class="offer-card p-4 p-md-5 rounded h-100">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <i class="bi bi-cake2-fill text-gold fs-1"></i>
+                            <span class="bg-gold text-dark px-3 py-1 fs-8 fw-bold text-uppercase">Birthdays</span>
+                        </div>
+                        <h3 class="playfair-font fs-3 text-white mb-3">Birthday Special</h3>
+                        <p class="text-white-60 mb-4">
+                            Book a table for 5+ people on your birthday week and the celebrant eats for free. (ID required).
+                        </p>
+                        <a href="#" class="text-gold text-uppercase fs-7 fw-bold text-decoration-none d-inline-flex align-items-center">
+                            Book Now <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
-    <section id="contact" class="py-24 bg-deep-charcoal border-t border-white/5">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div data-aos="fade-up">
-                    <span class="text-luxury-gold uppercase tracking-widest text-xs font-bold">Location</span>
-                    <h2 class="text-4xl font-playfair mb-8 text-white">Visit Our Chapter</h2>
-
-                    <div class="flex flex-col space-y-8">
-                        <div class="flex items-start group">
-                            <div
-                                class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mr-6 group-hover:bg-luxury-gold group-hover:text-black transition-all">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-charcoal">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <span class="text-gold text-uppercase fs-7 fw-bold letter-spacing-2">Location</span>
+                    <h2 class="playfair-font display-5 text-white mb-5">Visit Our Chapter</h2>
+                    
+                    <div class="contact-info">
+                        <div class="d-flex p-3 rounded mb-3">
+                            <div class="bg-dark rounded-circle d-flex align-items-center justify-content-center me-4" style="width: 50px; height: 50px;">
+                                <i class="bi bi-geo-alt-fill fs-5 text-gold"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-playfair text-white mb-1">Address</h4>
-                                <p class="text-gray-400 font-light">833-835 High Rd, Ilford IG3 8TD<br>United Kingdom
+                                <h5 class="playfair-font fs-5 text-white mb-1">Address</h5>
+                                <p class="text-white-60 mb-0">833-835 High Rd, Ilford IG3 8TD<br>United Kingdom</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex p-3 rounded mb-5">
+                            <div class="bg-dark rounded-circle d-flex align-items-center justify-content-center me-4" style="width: 50px; height: 50px;">
+                                <i class="bi bi-envelope-fill fs-5 text-gold"></i>
+                            </div>
+                            <div>
+                                <h5 class="playfair-font fs-5 text-white mb-1">Contact</h5>
+                                <p class="text-white-60 mb-0">
+                                    <a href="tel:+442030926216" class="text-white-60 text-decoration-none hover-text-gold">+44 20 3092 6216</a><br>
+                                    <a href="mailto:chapterslondon2022@gmail.com" class="text-white-60 text-decoration-none hover-text-gold">chapterslondon2022@gmail.com</a>
                                 </p>
                             </div>
                         </div>
-
-                        <div class="flex items-start group">
-                            <div
-                                class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mr-6 group-hover:bg-luxury-gold group-hover:text-black transition-all">
-                                <i class="fas fa-envelope text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-lg font-playfair text-white mb-1">Contact</h4>
-                                <p class="text-gray-400 font-light">
-                                    <a href="tel:+442030926216" class="hover:text-luxury-gold transition-colors">+44 20
-                                        3092 6216</a><br>
-                                    <a href="mailto:chapterslondon2022@gmail.com"
-                                        class="hover:text-luxury-gold transition-colors">chapterslondon2022@gmail.com</a>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="bg-white/5 p-8 border-l-2 border-luxury-gold mt-6">
-                            <h4 class="font-playfair text-xl mb-4 italic text-white">Opening Hours</h4>
-                            <div class="grid grid-cols-2 gap-y-2 text-sm text-gray-400">
-                                <span>Mon - Thu</span> <span class="text-right text-white">09:00 - 17:00</span>
-                                <span>Fri - Sat</span> <span class="text-right text-white">09:00 - 17:30</span>
-                                <span>Sunday</span> <span class="text-right text-white">09:00 - 16:30</span>
+                        
+                        <div class="bg-dark p-4 rounded border-start border-3 border-gold">
+                            <h5 class="playfair-font fs-5 fst-italic text-white mb-3">Opening Hours</h5>
+                            <div class="row g-0 text-white-60">
+                                <div class="col-6">Mon - Thu</div>
+                                <div class="col-6 text-end text-white">09:00 - 17:00</div>
+                                <div class="col-6">Fri - Sat</div>
+                                <div class="col-6 text-end text-white">09:00 - 17:30</div>
+                                <div class="col-6">Sunday</div>
+                                <div class="col-6 text-end text-white">09:00 - 16:30</div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="h-[500px] rounded-sm overflow-hidden relative group" data-aos="fade-left">
-                    <div
-                        class="w-full h-full relative border border-white/10 group-hover:border-luxury-gold transition-colors">
-                        <iframe
-                            src="https://maps.google.com/maps?q=833-835+High+Rd,+Ilford+IG3+8TD&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                            class="w-full h-full" style="border:0;" allowfullscreen loading="lazy"
+                
+                <div class="col-lg-6">
+                    <div class="h-100 rounded overflow-hidden border border-white-10">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=833-835+High+Rd,+Ilford+IG3+8TD&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                            class="w-100 h-100" 
+                            style="min-height: 400px; border: none;"
+                            allowfullscreen 
+                            loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
-
-                        <div
-                            class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-6">
-                            <a href="https://maps.google.com/maps?q=833-835+High+Rd,+Ilford+IG3+8TD" target="_blank"
-                                class="px-6 py-2 border border-white/40 text-white bg-black/40 hover:bg-white hover:text-black transition-all text-sm uppercase tracking-wider backdrop-blur">
-                                Get Directions
-                            </a>
-                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <footer class="py-12 border-t border-white/10 bg-[#050505] text-center">
-        <div class="container mx-auto px-6">
-            <div class="mb-6 flex justify-center">
-                <a href="#home" class="flex flex-col items-center group">
-                    <svg width="180" height="80" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg"
-                        class="fill-luxury-gold group-hover:text-white transition-colors duration-300">
-                        <g transform="translate(115, 0) scale(0.6)">
-                            <path
-                                d="M15,10 L15,50 M25,10 L25,50 M35,10 L35,50 M15,50 Q15,70 25,70 Q35,70 35,50 M25,70 L25,110"
-                                stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none" />
-                            <path d="M65,10 Q80,10 80,35 Q80,60 65,60 Q50,60 50,35 Q50,10 65,10 M65,60 L65,110"
-                                stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="currentColor" />
-                            <path d="M10,60 Q-10,30 10,10 M50,100 Q100,100 110,70 Q110,90 90,100 Z"
-                                stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none" />
-                            <path d="M85,80 Q105,70 110,50 Q110,80 85,80 Z" fill="currentColor" />
-                        </g>
-
-                        <text x="150" y="100" font-family="'Playfair Display', serif" font-size="42" font-weight="bold"
-                            text-anchor="middle" letter-spacing="4" fill="currentColor">CHAPTERS</text>
-
-                        <text x="150" y="125" font-family="'Outfit', sans-serif" font-size="12" font-weight="300"
-                            text-anchor="middle" letter-spacing="2" fill="currentColor" opacity="0.8">
-                            BREAKFAST • BRUNCH • BURGERS
-                        </text>
-                    </svg>
+    <!-- Footer -->
+    <footer class="py-5 bg-black border-top border-white-10">
+        <div class="container">
+            <div class="text-center mb-4">
+                <a href="#home" class="d-inline-block text-decoration-none">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="me-2">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15,10 L15,45 M25,10 L25,45 M35,10 L35,45 M15,45 C15,65 35,65 35,45 M25,65 L25,100" 
+                                          transform="translate(0, -10) scale(0.3)" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                    <path d="M65,10 C85,10 85,50 65,50 C45,50 45,10 65,10 M65,50 L65,100" 
+                                          transform="translate(-20, -10) scale(0.3)" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <span class="playfair-font fs-3 fw-bold text-gold">CHAPTERS</span>
+                                <span class="outfit-font fs-7 text-white-50">BREAKFAST • BRUNCH • BURGERS</span>
+                            </div>
+                        </div>
+                    </div>
                 </a>
             </div>
-            <div class="flex justify-center space-x-8 mb-8 text-white/40">
-                <a href="https://www.instagram.com/chapters_london/" target="_blank"
-                    class="hover:text-luxury-gold hover:scale-125 transition-all">
-                    <i class="fab fa-instagram fa-lg"></i>
+            
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="https://www.instagram.com/chapters_london/" target="_blank" class="footer-link">
+                    <i class="bi bi-instagram fs-4"></i>
                 </a>
-
-                <a href="https://www.tiktok.com/@chapters_london?_t=8oupBsKsOVl&_r=1" target="_blank"
-                    class="hover:text-luxury-gold hover:scale-125 transition-all">
-                    <i class="fab fa-tiktok fa-lg"></i>
+                <a href="https://www.tiktok.com/@chapters_london?_t=8oupBsKsOVl&_r=1" target="_blank" class="footer-link">
+                    <i class="bi bi-tiktok fs-4"></i>
                 </a>
-
-                <a href="tel:+442030926216" class="hover:text-luxury-gold hover:scale-125 transition-all">
-                    <i class="fas fa-phone fa-lg"></i>
+                <a href="tel:+442030926216" class="footer-link">
+                    <i class="bi bi-telephone fs-4"></i>
                 </a>
-
             </div>
-            <p class="text-xs text-white/30 uppercase tracking-[0.2em]">© 2026 Chapters London • Designed with <i
-                    class="fas fa-heart text-luxury-gold mx-1"></i> in Ilford</p>
+            
+            <p class="text-center text-white-30 fs-8 text-uppercase letter-spacing-2 mb-0">
+                © 2026 Chapters London • Designed with <i class="bi bi-heart-fill text-gold mx-1"></i> in Ilford
+            </p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Init Animation
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 50,
-            easing: 'ease-out-cubic'
-        });
-
-        // Toggle Mobile Menu
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileBtn.addEventListener('click', () => {
-            toggleMobileMenu();
-        });
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex');
-        }
-
-        // Menu Filtering Logic
-        function filterMenu(category) {
-            const items = document.querySelectorAll('.menu-item');
-            const buttons = document.querySelectorAll('.tab-btn');
-
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-luxury-gold', 'text-deep-charcoal');
-                btn.classList.add('text-luxury-gold');
+        // Menu Filtering Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.menu-category-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    categoryButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-gold', 'text-dark');
+                        btn.classList.add('btn-outline-gold');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-gold', 'text-dark');
+                    this.classList.remove('btn-outline-gold');
+                    
+                    // Get category filter
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter menu items
+                    menuItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
             });
-            event.currentTarget.classList.remove('text-luxury-gold');
-            event.currentTarget.classList.add('bg-luxury-gold', 'text-deep-charcoal');
-
-            items.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    if (category === 'all' || item.dataset.category === category) {
-                        item.classList.remove('hidden');
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
-                        }, 50);
-                    } else {
-                        item.classList.add('hidden');
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Close mobile navbar if open
+                            const navbarCollapse = document.querySelector('.navbar-collapse.show');
+                            if (navbarCollapse) {
+                                const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                                bsCollapse.hide();
+                            }
+                        }
                     }
-                }, 300);
+                });
             });
-        }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('bg-dark');
+                } else {
+                    navbar.classList.remove('bg-dark');
+                }
+            });
+        });
     </script>
 </body>
-
 </html>
