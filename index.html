@@ -82,14 +82,33 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-top: 15px;
-            padding-bottom: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
             transition: all 0.3s;
         }
 
+        /* Navbar Brand SVG sizing */
         .navbar-brand svg {
-            height: 60px;
-            width: auto;
+            transition: all 0.3s;
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 991px) {
+            .navbar-brand svg {
+                height: 45px; /* Smaller height for mobile */
+                width: auto;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .navbar {
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+            .navbar-brand svg {
+                height: 60px; /* Larger height for desktop */
+                width: auto;
+            }
         }
 
         .nav-link {
@@ -109,6 +128,7 @@
             border: none;
             color: var(--luxury-gold);
             font-size: 1.5rem;
+            padding: 0;
         }
         
         .navbar-toggler:focus {
@@ -123,7 +143,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin-top: 50px; /* Offset for fixed nav */
+            margin-top: 40px; 
         }
 
         .hero-bg {
@@ -232,8 +252,18 @@
 
     <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top" style="top: 32px;">
         <div class="container">
-            <a class="navbar-brand d-lg-none" href="#">
-               <span class="font-playfair fw-bold fs-3 text-gold">CHAPTERS</span>
+            
+            <a class="navbar-brand d-lg-none" href="#home">
+                <svg width="120" height="45" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" class="text-gold fill-current">
+                    <g transform="translate(128, 0) scale(0.5)">
+                        <path d="M15,10 L15,45 M25,10 L25,45 M35,10 L35,45 M15,45 C15,65 35,65 35,45 M25,65 L25,100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none" />
+                        <path d="M65,10 C85,10 85,50 65,50 C45,50 45,10 65,10 M65,50 L65,100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none" />
+                        <path d="M15,35 Q-15,35 -5,10" stroke="#D4AF37" stroke-width="4" fill="none" opacity="0.8" />
+                        <path d="M75,80 Q110,80 110,40 Q110,70 85,90" fill="#D4AF37" />
+                    </g>
+                    <text x="150" y="95" font-family="'Playfair Display', serif" font-size="44" font-weight="bold" text-anchor="middle" letter-spacing="4" fill="#D4AF37">CHAPTERS</text>
+                    <text x="150" y="118" font-family="'Outfit', sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="3" opacity="0.7" fill="#FFF">BREAKFAST • BRUNCH</text>
+                </svg>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -253,8 +283,8 @@
                     </li>
                     
                     <li class="nav-item px-4 d-none d-lg-block">
-                        <a class="navbar-brand" href="#home">
-                            <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" class="text-gold fill-current">
+                        <a class="navbar-brand m-0" href="#home">
+                            <svg width="160" height="60" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg" class="text-gold fill-current">
                                 <g transform="translate(128, 0) scale(0.5)">
                                     <path d="M15,10 L15,45 M25,10 L25,45 M35,10 L35,45 M15,45 C15,65 35,65 35,45 M25,65 L25,100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none" />
                                     <path d="M65,10 C85,10 85,50 65,50 C45,50 45,10 65,10 M65,50 L65,100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none" />
