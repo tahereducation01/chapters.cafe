@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters London - Digital Menu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --luxury-gold: #D4AF37;
+            --deep-charcoal: #0F0F0F;
+            --off-white: #FAF9F6;
+            --soft-gold: rgba(212, 175, 55, 0.1);
+            --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F5E6AD 100%);
+            --gradient-dark: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--gradient-dark);
+            color: var(--off-white);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Floating Action Buttons */
+        .action-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .btn {
+            background: var(--gradient-gold);
+            color: #000;
+            padding: 14px 28px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 0.85rem;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-back {
+            background: rgba(51, 51, 51, 0.9);
+            color: #fff;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-print {
+            background: var(--gradient-gold);
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(15, 15, 15, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .qr-section.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            margin: 10px auto;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .qr-toggle {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--luxury-gold);
+            border: 1px solid var(--luxury-gold);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .qr-toggle:hover {
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        /* Main Menu Container */
+        .menu-container {
+            max-width: 210mm;
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        /* Menu Paper */
+        .menu-paper {
+            background: var(--deep-charcoal);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* Decorative Elements */
+        .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            z-index: 1;
+        }
+
+        .corner-tl {
+            top: 0;
+            left: 0;
+            border-top: 3px solid var(--luxury-gold);
+            border-left: 3px solid var(--luxury-gold);
+            border-top-left-radius: 16px;
+        }
+
+        .corner-tr {
+            top: 0;
+            right: 0;
+            border-top: 3px solid var(--luxury-gold);
+            border-right: 3px solid var(--luxury-gold);
+            border-top-right-radius: 16px;
+        }
+
+        .corner-bl {
+            bottom: 0;
+            left: 0;
+            border-bottom: 3px solid var(--luxury-gold);
+            border-left: 3px solid var(--luxury-gold);
+            border-bottom-left-radius: 16px;
+        }
+
+        .corner-br {
+            bottom: 0;
+            right: 0;
+            border-bottom: 3px solid var(--luxury-gold);
+            border-right: 3px solid var(--luxury-gold);
+            border-bottom-right-radius: 16px;
+        }
+
+        /* Header */
+        .menu-header {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 50px 40px 30px;
+            text-align: center;
+            position: relative;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo-container {
+            margin-bottom: 25px;
+        }
+
+        .logo-svg {
+            width: 280px;
+            height: auto;
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.3));
+        }
+
+        .restaurant-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .info-item i {
+            color: var(--luxury-gold);
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            padding: 50px 40px;
+        }
+
+        /* Category Section */
+        .category-section {
+            position: relative;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--luxury-gold);
+            font-size: 1.5rem;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--luxury-gold);
+            letter-spacing: 1px;
+        }
+
+        /* Menu Items */
+        .menu-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            opacity: 1;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .item-price {
+            color: var(--luxury-gold);
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .item-desc {
+            font-size: 0.95rem;
+            color: #bbb;
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .tag.spicy {
+            background: rgba(255, 50, 50, 0.1);
+            color: #ff6666;
+            border: 1px solid rgba(255, 50, 50, 0.3);
+        }
+
+        .tag.halal {
+            background: rgba(50, 200, 50, 0.1);
+            color: #66ff66;
+            border: 1px solid rgba(50, 200, 50, 0.3);
+        }
+
+        .tag.bestseller {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--luxury-gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .tag.vegetarian {
+            background: rgba(100, 200, 255, 0.1);
+            color: #66ccff;
+            border: 1px solid rgba(100, 200, 255, 0.3);
+        }
+
+        /* Dietary Info */
+        .dietary-info {
+            padding: 30px 40px;
+            background: rgba(10, 10, 10, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .dietary-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .dietary-item i {
+            color: var(--luxury-gold);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .menu-footer {
+            padding: 40px;
+            text-align: center;
+            background: rgba(5, 5, 5, 0.95);
+            border-top: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .contact-item a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--luxury-gold);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .action-buttons,
+            .qr-section,
+            .qr-toggle {
+                display: none !important;
+            }
+
+            .menu-container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .menu-paper {
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+            }
+
+            .menu-item:hover {
+                transform: none;
+                border-color: transparent;
+            }
+
+            /* Force background colors in print */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1200px) {
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+                padding: 40px 30px;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 30px 20px;
+            }
+
+            .menu-header {
+                padding: 40px 20px 20px;
+            }
+
+            .logo-svg {
+                width: 220px;
+            }
+
+            .restaurant-info,
+            .contact-info {
+                gap: 20px;
+            }
+
+            .dietary-info {
+                padding: 20px;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .action-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                min-width: 140px;
+                font-size: 0.8rem;
+            }
+
+            .menu-header {
+                padding: 30px 15px 15px;
+            }
+
+            .category-header {
+                margin-bottom: 25px;
+            }
+
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .menu-item {
+                padding: 15px;
+            }
+
+            .item-name {
+                font-size: 1.1rem;
+            }
+
+            .item-price {
+                font-size: 1.1rem;
+                padding: 3px 12px;
+                min-width: 70px;
+            }
+
+            .item-desc {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .action-buttons {
+                position: static;
+                flex-direction: row;
+                justify-content: center;
+                margin: 20px 0;
+                position: relative;
+            }
+
+            .menu-header,
+            .menu-footer {
+                padding: 25px 15px;
+            }
+
+            .logo-svg {
+                width: 180px;
+            }
+
+            .restaurant-info,
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .info-item,
+            .contact-item {
+                font-size: 0.8rem;
+            }
+
+            .dietary-info {
+                padding: 15px;
+            }
+        }
+
+        /* Animation for menu items */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-item {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--luxury-gold);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- QR Code Section -->
+    <div class="qr-section" id="qrSection">
+        <h4>Scan for Digital Menu</h4>
+        <div class="qr-code">
+            <!-- QR Code would be generated here -->
+            <div style="width: 100%; height: 100%; background: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #000;">
+                QR CODE
+            </div>
+        </div>
+        <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">Scan to view menu on your phone</p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="qr-toggle" onclick="toggleQR()">
+            <i class="fas fa-qrcode"></i> Show QR
+        </button>
+        <a href="index.html" class="btn btn-back">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <!-- <button onclick="window.print()" class="btn btn-print">
+            <i class="fas fa-print"></i> Print Menu
+        </button> -->
+    </div>
+
+    <!-- Main Menu Container -->
+    <div class="menu-container">
+        <div class="menu-paper">
+            <!-- Corner Decorations -->
+            <div class="corner-decoration corner-tl"></div>
+            <div class="corner-decoration corner-tr"></div>
+            <div class="corner-decoration corner-bl"></div>
+            <div class="corner-decoration corner-br"></div>
+
+            <!-- Header -->
+            <header class="menu-header">
+                <div class="logo-container">
+                    <svg class="logo-svg" viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(128, 0) scale(0.5)">
+                            <path d="M15,10 L15,45 M25,10 L25,45 M35,10 L35,45 M15,45 C15,65 35,65 35,45 M25,65 L25,100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none" />
+                            <path d="M65,10 C85,10 85,50 65,50 C45,50 45,10 65,10 M65,50 L65,100" stroke="#D4AF37" stroke-width="5" stroke-linecap="round" fill="none" />
+                            <path d="M15,35 Q-15,35 -5,10" stroke="#D4AF37" stroke-width="4" fill="none" opacity="0.8" />
+                            <path d="M75,80 Q110,80 110,40 Q110,70 85,90" fill="#D4AF37" />
+                        </g>
+                        <text x="150" y="95" font-family="'Playfair Display', serif" font-size="44" font-weight="bold" text-anchor="middle" letter-spacing="4" fill="#D4AF37">CHAPTERS</text>
+                        <text x="150" y="118" font-family="'Outfit', sans-serif" font-size="11" font-weight="400" text-anchor="middle" letter-spacing="3" opacity="0.7" fill="#FFF">BREAKFAST • BRUNCH • BURGERS</text>
+                    </svg>
+                </div>
+
+                <div class="restaurant-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>833-835 High Rd, Ilford IG3 8TD</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+44 20 3092 6216</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-hands-praying"></i>
+                        <span>100% Halal Certified</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid">
+                <!-- Column 1 -->
+                <div class="column">
+                    <!-- Brunch & Breakfast Section -->
+                    <section class="category-section">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            <h2 class="category-title">Brunch & Breakfast</h2>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Double Style Full English</h3>
+                                <span class="item-price">£13.75</span>
+                            </div>
+                            <p class="item-desc">Merguez sausages, fried eggs, turkey bacon, hash browns, Mediterranean beans, mushrooms, and sourdough toast.</p>
+                            <div class="item-tags">
+                                <span class="tag bestseller">Bestseller</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">The Top Chapter</h3>
+                                <span class="item-price">£17.20</span>
+                            </div>
+                            <p class="item-desc">Signature big breakfast with slow-cooked brisket, artisanal sausages, free-range eggs, and all the trimmings.</p>
+                            <div class="item-tags">
+                                <span class="tag bestseller">Bestseller</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Loaded French Toast</h3>
+                                <span class="item-price">£14.90</span>
+                            </div>
+                            <p class="item-desc">Brioche soaked in cinnamon-vanilla custard, topped with fresh berries, maple syrup, and Chantilly cream.</p>
+                            <div class="item-tags">
+                                <span class="tag vegetarian">Vegetarian</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Shakshuka Classic</h3>
+                                <span class="item-price">£11.50</span>
+                            </div>
+                            <p class="item-desc">Baked eggs in a spicy tomato and pepper ragout, topped with feta cheese, served with toasted flatbread.</p>
+                            <div class="item-tags">
+                                <span class="tag spicy">Spicy</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Coffee & Drinks Section -->
+                    <section class="category-section">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                            <h2 class="category-title">Coffee & Drinks</h2>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Gold Leaf Latte</h3>
+                                <span class="item-price">£5.50</span>
+                            </div>
+                            <p class="item-desc">24k edible gold flakes, turmeric blend, choice of oat, almond or soy milk.</p>
+                            <div class="item-tags">
+                                <span class="tag bestseller">Instagram Famous</span>
+                                <span class="tag vegetarian">Vegetarian</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Chapters Karak Tea</h3>
+                                <span class="item-price">£3.50</span>
+                            </div>
+                            <p class="item-desc">Authentic strong tea brewed with cardamom, saffron and evaporated milk.</p>
+                            <div class="item-tags">
+                                <span class="tag bestseller">Local Favorite</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="column">
+                    <!-- Signature Burgers Section -->
+                    <section class="category-section">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-hamburger"></i>
+                            </div>
+                            <h2 class="category-title">Signature Burgers</h2>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Chapters Burger</h3>
+                                <span class="item-price">£15.95</span>
+                            </div>
+                            <p class="item-desc">Juicy wagyu beef patty, slow-cooked brisket, fried egg, aged cheddar, and caramelised onions.</p>
+                            <div class="item-tags">
+                                <span class="tag bestseller">Bestseller</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">The Buffalo</h3>
+                                <span class="item-price">£14.90</span>
+                            </div>
+                            <p class="item-desc">Southern-style buttermilk chicken dipped in buffalo sauce with blue cheese dressing.</p>
+                            <div class="item-tags">
+                                <span class="tag spicy">Spicy</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">The Inferno</h3>
+                                <span class="item-price">£15.50</span>
+                            </div>
+                            <p class="item-desc">Cajun blackened beef patty, applewood smoked cheddar, turkey bacon, jalapeños, and spicy sauce.</p>
+                            <div class="item-tags">
+                                <span class="tag spicy">Very Spicy</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sides & Small Plates Section -->
+                    <section class="category-section">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h2 class="category-title">Sides & Small Plates</h2>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Popcorn Chicken</h3>
+                                <span class="item-price">£6.95</span>
+                            </div>
+                            <p class="item-desc">Crispy popcorn chicken with choice of Buffalo or Algerian sauce.</p>
+                            <div class="item-tags">
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Truffle Mac & Cheese</h3>
+                                <span class="item-price">£6.95</span>
+                            </div>
+                            <p class="item-desc">Baked with house special 4-cheese sauce and black truffle oil.</p>
+                            <div class="item-tags">
+                                <span class="tag vegetarian">Vegetarian</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-header">
+                                <h3 class="item-name">Halloumi Fries</h3>
+                                <span class="item-price">£5.95</span>
+                            </div>
+                            <p class="item-desc">Crispy halloumi fries served with sweet chilli dip and pomegranate seeds.</p>
+                            <div class="item-tags">
+                                <span class="tag vegetarian">Vegetarian</span>
+                                <span class="tag halal">Halal</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Dietary Information -->
+            <div class="dietary-info">
+                <div class="dietary-item">
+                    <i class="fas fa-seedling"></i>
+                    <span>Vegetarian options available</span>
+                </div>
+                <div class="dietary-item">
+                    <i class="fas fa-hands-praying"></i>
+                    <span>100% Halal certified kitchen</span>
+                </div>
+                <div class="dietary-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Please inform staff of any allergies</span>
+                </div>
+                <div class="dietary-item">
+                    <i class="fas fa-leaf"></i>
+                    <span>Locally sourced ingredients</span>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="menu-footer">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Thu: 9:00-17:00 | Fri-Sat: 9:00-17:30 | Sun: 9:00-16:30</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:chapterslondon2022@gmail.com">chapterslondon2022@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-hashtag"></i>
+                        <span>@chapters_london</span>
+                    </div>
+                </div>
+                <p class="copyright">
+                    © 2026 Chapters London • Menu items and prices subject to change
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Toggle QR Code Section
+        function toggleQR() {
+            const qrSection = document.getElementById('qrSection');
+            qrSection.classList.toggle('active');
+        }
+
+        // Close QR section when clicking outside
+        document.addEventListener('click', function(event) {
+            const qrSection = document.getElementById('qrSection');
+            const qrToggle = document.querySelector('.qr-toggle');
+            
+            if (!qrSection.contains(event.target) && !qrToggle.contains(event.target)) {
+                qrSection.classList.remove('active');
+            }
+        });
+
+        // Print button functionality
+        document.querySelector('.btn-print').addEventListener('click', function() {
+            window.print();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe menu items for scroll animations
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.style.animationPlayState = 'paused';
+            observer.observe(item);
+        });
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + P for print
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+            // Escape to close QR
+            if (e.key === 'Escape') {
+                document.getElementById('qrSection').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
