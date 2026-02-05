@@ -66,16 +66,6 @@
             color: var(--deep-charcoal);
         }
 
-        /* Top Bar */
-        .top-bar {
-            background-color: var(--luxury-gold);
-            color: var(--deep-charcoal);
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            z-index: 1050;
-        }
-
         /* Navbar */
         .navbar {
             background: rgba(15, 15, 15, 0.95);
@@ -85,6 +75,7 @@
             padding-top: 10px;
             padding-bottom: 10px;
             transition: all 0.3s;
+            top: 0; /* Updated: Stick to very top */
         }
 
         /* Navbar Brand SVG sizing */
@@ -95,7 +86,7 @@
         /* Mobile specific adjustments */
         @media (max-width: 991px) {
             .navbar-brand svg {
-                height: 45px; /* Smaller height for mobile */
+                height: 45px;
                 width: auto;
             }
         }
@@ -106,7 +97,7 @@
                 padding-bottom: 15px;
             }
             .navbar-brand svg {
-                height: 60px; /* Larger height for desktop */
+                height: 60px;
                 width: auto;
             }
         }
@@ -143,7 +134,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            margin-top: 40px; 
+            /* Margin removed since Top Bar is gone */
         }
 
         .hero-bg {
@@ -245,12 +236,7 @@
 
 <body data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="100">
 
-    <div class="fixed-top top-bar py-2 text-center text-uppercase">
-        <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true" style="animation-duration: 2s;"></span>
-        Now Delivering via UberEats & Deliveroo | 100% Halal Menu
-    </div>
-
-    <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top" style="top: 32px;">
+    <nav id="mainNavbar" class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             
             <a class="navbar-brand d-lg-none" href="#home">
@@ -475,7 +461,9 @@
             </div>
 
             <div class="text-center mt-5">
-                <a href="#" class="text-decoration-none text-gold text-uppercase ls-2 small border-bottom border-gold pb-1 hover-white">Download Full Menu PDF</a>
+                <a href="menu-design.html" class="text-decoration-none text-gold text-uppercase ls-2 small border-bottom border-gold pb-1 hover-white">
+                    View Full Menu Card <i class="fas fa-arrow-right ms-1"></i>
+                </a>
             </div>
         </div>
     </section>
